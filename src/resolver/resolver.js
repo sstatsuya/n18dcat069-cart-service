@@ -29,7 +29,7 @@ const resolvers = {
             return data.data.product;
           });
 
-          console.log(JSON.stringify(product))
+          // console.log(JSON.stringify(product))
         userCartProductList[i].data = {
           name: product.name,
           price: product.price,
