@@ -7,6 +7,7 @@ const { URL } = require("../common/URL");
 const resolvers = {
   Query: {
     userCart: async (parent, args) => {
+      console.log("user id ne: "+args.userId)
       let userCartProductList = await Cart.find({ userId: args.userId });
       for (let i = 0; i < userCartProductList.length; i++) {
         let product = await fetch(URL.PRODUCT_SERVICE, {
