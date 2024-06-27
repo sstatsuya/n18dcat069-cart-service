@@ -7,7 +7,7 @@ const { URL } = require("../common/URL");
 const resolvers = {
   Query: {
     userCart: async (parent, args) => {
-      console.log("user id ne: "+args.userId)
+      console.log("user id ne: " + args.userId);
       let userCartProductList = await Cart.find({ userId: args.userId });
       for (let i = 0; i < userCartProductList.length; i++) {
         let product = await fetch(URL.PRODUCT_SERVICE, {
@@ -23,14 +23,17 @@ const resolvers = {
             },
           }),
         })
-          .then((res) =>{
-            return res.json()
+          .then((res) => {
+            return res.json();
           })
           .then((data) => {
             return data.data.product;
+          })
+          .catch((err) => {
+            console.log("ERROR userCart: ", err);
           });
 
-          // console.log(JSON.stringify(product))
+        // console.log(JSON.stringify(product))
         userCartProductList[i].data = {
           name: product.name,
           price: product.price,
